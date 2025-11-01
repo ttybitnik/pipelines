@@ -1,3 +1,4 @@
+---
 name: Semantic Versioning
 
 on:  # yamllint disable-line rule:truthy

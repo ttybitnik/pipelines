@@ -1,0 +1,67 @@
+name: Semantic Versioning
+
+on:
+  workflow_call:
+    outputs:
+      releases_created:
+        description: "Whether releases were created"
+        value: ${{ jobs.release-please.outputs.releases_created }}
+      prs_created:
+        description: "Whether PRs were created"
+        value: ${{ jobs.release-please.outputs.prs_created }}
+      release_created:
+        description: "Whether a release was created"
+        value: ${{ jobs.release-please.outputs.release_created }}
+      major:
+        description: "Major version number"
+        value: ${{ jobs.release-please.outputs.major }}
+      minor:
+        description: "Minor version number"
+        value: ${{ jobs.release-please.outputs.minor }}
+      patch:
+        description: "Patch version number"
+        value: ${{ jobs.release-please.outputs.patch }}
+      sha:
+        description: "Commit SHA for the release"
+        value: ${{ jobs.release-please.outputs.sha }}
+
+jobs:
+  release-please:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    outputs:
+      releases_created: ${{ steps.release.outputs.releases_created }}
+      prs_created: ${{ steps.release.outputs.prs_created }}
+      release_created: ${{ steps.release.outputs.release_created }}
+      major: ${{ steps.release.outputs.major }}
+      minor: ${{ steps.release.outputs.minor }}
+      patch: ${{ steps.release.outputs.patch }}
+      sha: ${{ steps.release.outputs.sha }}
+    steps:
+      - name: Automate releases based on conventional commits
+        id: release
+        uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38  # v4.4.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: configs/release-please-config.json
+          manifest-file: configs/release-please-manifest.json
+      - name: Format and print GH step summary
+        if: always()
+        run: |
+          echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
+          echo "| **releases_created** | ${{ steps.release.outputs.releases_created }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **prs_created** | ${{ steps.release.outputs.prs_created }} |" >> $GITHUB_STEP_SUMMARY
+      - name: Format and print the release_created GH step summary
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
+          echo "| **release_created** | ${{ steps.release.outputs.release_created }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **major** | ${{ steps.release.outputs.major }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **minor** | ${{ steps.release.outputs.minor }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **patch** | ${{ steps.release.outputs.patch }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **sha** | ${{ steps.release.outputs.sha }} |" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,28 @@
+---
+name: Continuous Integration
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+  schedule:
+    - cron: "0 0 1,16 * *"
+
+jobs:
+  yaml-checks:
+    permissions:
+      contents: read
+      pull-requests: read
+      # checks: write
+    uses: ./.github/workflows/yaml-checks.yaml
+
+  secops:
+    permissions:
+      contents: read
+      security-events: write
+    uses: ./.github/workflows/secops.yaml

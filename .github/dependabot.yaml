@@ -13,11 +13,3 @@ updates:
     commit-message:
       prefix: "deps(gh)"
       # include: "scope"
-
-# - package-ecosystem: "docker"
-#   directories:
-#     - "**/*"
-#   schedule:
-#     interval: "weekly"
-#   commit-message:
-#     prefix: "deps(gh)"

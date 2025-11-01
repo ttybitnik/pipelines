@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
       - name: Run Trivy scanner in fs mode for vuln and secret
         id: trivy-scan
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8  # v0.33.1
         with:
           scan-type: "fs"
           scanners: "vuln,secret"
@@ -27,7 +27,7 @@ jobs:
           severity: "CRITICAL,HIGH"
       - name: Run Trivy scanner in fs mode for misconfig
         id: trivy-scan-misconfig
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8  # v0.33.1
         with:
           scan-type: "fs"
           scanners: "misconfig"

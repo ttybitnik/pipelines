@@ -76,34 +76,34 @@ jobs:
           - language: go
             build-mode: autobuild
     steps:
-    - name: Checkout default branch
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@0499de31b99561a6d14a36a5f662c2a54f91beee  # v4.31.2
-      with:
-        languages: ${{ matrix.language }}
-        build-mode: ${{ matrix.build-mode }}
-    - name: Set up Go
-      uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00  # v.6.0.0
-      with:
-        version-file: ${{ inputs.go-version-file }}
-        cache: ${{ inputs.go-enable-cache }}
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@0499de31b99561a6d14a36a5f662c2a54f91beee  # v4.31.2
-    # - name: Manual build steps
-    #   if: matrix.build-mode == "manual"
-    #   shell: bash
-    #   run: |
-    #    make build
-    - name: Perform CodeQL Analysis
-      id: analyze
-      uses: github/codeql-action/analyze@0499de31b99561a6d14a36a5f662c2a54f91beee  # v4.31.2
-      with:
-        category: "/language:${{matrix.language}}"
-    - name: Format and print GH step summary
-      if: always()
-      run: |
-        echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
-        echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
-        echo "| **codeql** | ${{ steps.analyze.outcome }} |" >> $GITHUB_STEP_SUMMARY
-        echo "| **codeql_verbosity** | $CODEQL_VERBOSITY  |" >> $GITHUB_STEP_SUMMARY
+      - name: Checkout default branch
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@0499de31b99561a6d14a36a5f662c2a54f91beee  # v4.31.2
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+      - name: Set up Go
+        uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00  # v.6.0.0
+        with:
+          version-file: ${{ inputs.go-version-file }}
+          cache: ${{ inputs.go-enable-cache }}
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@0499de31b99561a6d14a36a5f662c2a54f91beee  # v4.31.2
+      # - name: Manual build steps
+      #   if: matrix.build-mode == "manual"
+      #   shell: bash
+      #   run: |
+      #    make build
+      - name: Perform CodeQL Analysis
+        id: analyze
+        uses: github/codeql-action/analyze@0499de31b99561a6d14a36a5f662c2a54f91beee  # v4.31.2
+        with:
+          category: "/language:${{matrix.language}}"
+      - name: Format and print GH step summary
+        if: always()
+        run: |
+          echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
+          echo "| **codeql** | ${{ steps.analyze.outcome }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **codeql_verbosity** | $CODEQL_VERBOSITY  |" >> $GITHUB_STEP_SUMMARY

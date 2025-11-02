@@ -51,7 +51,7 @@ jobs:
           fetch-depth: "0"
       - name: Create git tag for release-please draft
         id: draft-tag
-        uses: ./.github/actions/release-please-draft-tag
+        uses: ttybitnik/pipelines/.github/actions/release-please-draft-tag@master
       - name: Format and print GH step summary
         if: always()
         run: |

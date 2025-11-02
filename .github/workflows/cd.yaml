@@ -28,3 +28,5 @@ jobs:
       pull-requests: write
     needs: [call-ci]
     uses: ./.github/workflows/semver.yaml
+    with:
+      commit-message: ${{ github.event.head_commit.message }}

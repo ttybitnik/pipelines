@@ -25,11 +25,11 @@ Designed to provide security consistency, reduce duplication, and minimize maint
 
 ### Actions
 
-| Action                                               | Description                        |
-|------------------------------------------------------|------------------------------------|
-| [release-please-draft-tag][release-please-draft-tag] | Git tag for release-please drafts. |
+| Action                                                   | Description                        |
+|----------------------------------------------------------|------------------------------------|
+| [release-please-draft-tag][release-please-draft-tag-uri] | Git tag for release-please drafts. |
 
-[release-please-draft-tag]: https://github.com/ttybitnik/pipelines/blob/master/.github/release-please-draft-tag/action.yaml
+[release-please-draft-tag-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/release-please-draft-tag/action.yaml
 
 ## Requirements
 

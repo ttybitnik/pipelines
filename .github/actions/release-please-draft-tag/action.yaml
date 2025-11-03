@@ -77,6 +77,7 @@ runs:
           } catch (error) {
             if (error.status !== 404) {
               core.setFailed(`Tag get operation failed: HTTP ${error.status}`);
+              return;
             }
           }
 
@@ -91,4 +92,5 @@ runs:
             core.notice(`Successfully created tag: ${tagVersion}`);
           } catch (error) {
             core.setFailed(`Tag creation failed: HTTP ${error.status}`);
+            return;
           }

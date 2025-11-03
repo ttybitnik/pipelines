@@ -29,6 +29,11 @@
       "hidden": false
     },
     {
+      "type": "refactor",
+      "section": "Code Refactoring",
+      "hidden": false
+    },
+    {
       "type": "deps",
       "section": "Dependencies",
       "hidden": false
@@ -41,11 +46,6 @@
     {
       "type": "chore",
       "section": "Miscellaneous Chores",
-      "hidden": true
-    },
-    {
-      "type": "refactor",
-      "section": "Code Refactoring",
       "hidden": true
     },
     {

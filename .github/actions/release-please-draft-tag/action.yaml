@@ -15,10 +15,25 @@ inputs:
     required: false
     default: "."
 
+outputs:
+  package:
+    description: "The package name from manifest"
+    value: ${{ steps.create-tag.outputs.package }}
+  prefix:
+    description: "The tag prefix used"
+    value: ${{ steps.create-tag.outputs.prefix }}
+  manifest_version:
+    description: "The raw version from manifest"
+    value: ${{ steps.create-tag.outputs.manifest_version }}
+  tag_version:
+    description: "The final tag version created"
+    value: ${{ steps.create-tag.outputs.tag_version }}
+
 runs:
   using: "composite"
   steps:
     - name: Create tag via GitHub script/API
+      id: create-tag
       uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd  # v8.0.0
       env:
         INPUT_TAG_PREFIX: ${{ inputs.tag-prefix }}
@@ -37,14 +52,15 @@ runs:
           const rawVersion = manifestData[manifestPackage];
           const tagVersion = `${tagPrefix}${rawVersion}`;
 
-          console.log(`Package: ${manifestPackage}`);
-          console.log(`Prefix: ${tagPrefix}`);
-          console.log(`Manifest version: ${rawVersion}`);
-          console.log(`Tag version: ${tagVersion}`);
           core.info(`Package: ${manifestPackage}`);
           core.info(`Prefix: ${tagPrefix}`);
           core.info(`Manifest version: ${rawVersion}`);
           core.info(`Tag version: ${tagVersion}`);
+
+          core.setOutput('package', manifestPackage);
+          core.setOutput('prefix', tagPrefix);
+          core.setOutput('manifest_version', rawVersion);
+          core.setOutput('tag_version', tagVersion);
 
           try {
             await github.rest.git.getRef({

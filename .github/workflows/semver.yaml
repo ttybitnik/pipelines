@@ -57,7 +57,10 @@ jobs:
         run: |
           echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
-          echo "| **draft-tag** | ${{ steps.draft-tag.outcome }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **package** | ${{ steps.draft-tag.outputs.package }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **prefix** | ${{ steps.draft-tag.outputs.prefix }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **manifest_version** | ${{ steps.draft-tag.outputs.manifest_version }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **tag_version** | ${{ steps.draft-tag.outputs.tag_version }} |" >> $GITHUB_STEP_SUMMARY
 
   release-please:
     permissions:

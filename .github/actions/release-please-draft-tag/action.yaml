@@ -16,6 +16,9 @@ inputs:
     default: "."
 
 outputs:
+  tag_created:
+    description: "Whether a new tag was created"
+    value: ${{ steps.create-tag.outputs.tag_created }}
   package:
     description: "The package name from manifest"
     value: ${{ steps.create-tag.outputs.package }}
@@ -68,6 +71,7 @@ runs:
               repo: context.repo.repo,
               ref: `tags/${tagVersion}`,
             });
+            core.setOutput('tag_created', 'false');
             core.info(`Tag ${tagVersion} already exists`);
             return;
           } catch (error) {
@@ -83,8 +87,8 @@ runs:
               ref: `refs/tags/${tagVersion}`,
               sha: context.sha,
             });
+            core.setOutput('tag_created', 'true');
+            core.notice(`Successfully created tag: ${tagVersion}`);
           } catch (error) {
             core.setFailed(`Tag creation failed: HTTP ${error.status}`);
           }
-
-          core.notice(`Successfully created tag: ${tagVersion}`);

@@ -20,13 +20,17 @@ runs:
   steps:
     - name: Create tag via GitHub script/API
       uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd  # v8.0.0
+      env:
+        INPUT_TAG_PREFIX: ${{ inputs.tag-prefix }}
+        INPUT_MANIFEST_FILENAME: ${{ inputs.manifest-filename }}
+        INPUT_MANIFEST_PACKAGE: ${{ inputs.manifest-package }}
       with:
         script: |
           const fs = require('fs');
 
-          const tagPrefix = '${{ inputs.tag-prefix }}';
-          const manifestFilename = '${{ inputs.manifest-filename }}';
-          const manifestPackage = '${{ inputs.manifest-package }}';
+          const tagPrefix = process.env.INPUT_TAG_PREFIX;
+          const manifestFilename = process.env.INPUT_MANIFEST_FILENAME;
+          const manifestPackage = process.env.INPUT_MANIFEST_PACKAGE;
 
           const fileContent = fs.readFileSync(manifestFilename, 'utf8');
           const manifestData = JSON.parse(fileContent);

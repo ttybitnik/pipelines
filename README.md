@@ -40,7 +40,7 @@ None
 
 ## Example
 
-> [!TIP]
+> [!NOTE]
 > Releases in this repository are immutable. If you prefer, feel free to use the full semantic version (e.g., `v0.1.2`) instead of the commit hash.
 
 ### Using `workflows`:

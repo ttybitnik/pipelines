@@ -5,6 +5,10 @@ Centralized repository for Git forges automation components.
 It provides reusable CI/CD pipelines, quality checks, and configuration patterns.
 Designed to provide security consistency, reduce duplication, and minimize maintenance workload.
 
+[![release](https://img.shields.io/github/v/release/ttybitnik/pipelines)](https://github.com/ttybitnik/pipelines/releases/latest)
+[![ci/cd](https://github.com/ttybitnik/pipelines/actions/workflows/cd.yaml/badge.svg)](https://github.com/ttybitnik/pipelines/actions/workflows/cd.yaml)
+[![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
+
 ## GitHub
 
 ### Reusable workflows

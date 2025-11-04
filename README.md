@@ -44,11 +44,39 @@ None
 ### Using `workflows`:
 
 ```yaml
+jobs:
+  go-checks:
+    permissions:
+      contents: read
+      pull-requests: read
+      security-events: write
+    uses: ttybitnik/pipelines/.github/workflows/go-checks.yaml@master
+    with:
+      codeql-enable: true
+
+  secops:
+    permissions:
+      contents: read
+      security-events: write
+    uses: ttybitnik/pipelines/.github/workflows/secops.yaml@master
 ```
 
 ### Using `actions`:
 
 ```yaml
+jobs:
+  release-please-draft-tag:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+        with:
+          fetch-depth: "0"
+      - name: Create git tag for release-please draft
+        id: draft-tag
+        uses: ttybitnik/pipelines/.github/actions/release-please-draft-tag@master
 ```
 
 ## License

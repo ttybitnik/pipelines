@@ -2,7 +2,7 @@
 
 A centralized repository of reusable automation components for Git forges.
 
-It provides reusable CI/CD pipelines, quality checks, and configuration patterns to enforce security, reduce duplication, and ease maintenance.
+It provides reusable CI/CD pipelines, quality checks, and configuration patterns to **enforce security**, **reduce duplication**, and **ease maintenance**.
 
 [![release](https://img.shields.io/github/v/release/ttybitnik/pipelines)](https://github.com/ttybitnik/pipelines/releases/latest)
 [![ci/cd](https://github.com/ttybitnik/pipelines/actions/workflows/cd.yaml/badge.svg)](https://github.com/ttybitnik/pipelines/actions/workflows/cd.yaml)

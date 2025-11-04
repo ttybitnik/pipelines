@@ -1,9 +1,8 @@
-# Pipelines (WIP)
+# Pipelines
 
-Centralized repository for Git forges automation components.
+A centralized repository of reusable automation components for Git forges.
 
-It provides reusable CI/CD pipelines, quality checks, and configuration patterns.
-Designed to provide security consistency, reduce duplication, and minimize maintenance workload.
+It provides reusable CI/CD pipelines, quality checks, and configuration patterns to enforce security, minimize duplication, and reduce maintenance.
 
 [![release](https://img.shields.io/github/v/release/ttybitnik/pipelines)](https://github.com/ttybitnik/pipelines/releases/latest)
 [![ci/cd](https://github.com/ttybitnik/pipelines/actions/workflows/cd.yaml/badge.svg)](https://github.com/ttybitnik/pipelines/actions/workflows/cd.yaml)
@@ -41,6 +40,9 @@ None
 
 ## Example
 
+> [!TIP]
+> Releases in this repository are immutable. If you prefer, feel free to use the full semantic version (e.g., `v0.1.2`) instead of the commit hash.
+
 ### Using `workflows`:
 
 ```yaml
@@ -50,7 +52,7 @@ jobs:
       contents: read
       pull-requests: read
       security-events: write
-    uses: ttybitnik/pipelines/.github/workflows/go-checks.yaml@master
+    uses: ttybitnik/pipelines/.github/workflows/go-checks.yaml@v0.1.0  # (x-release-please-version)
     with:
       codeql-enable: true
 
@@ -58,7 +60,7 @@ jobs:
     permissions:
       contents: read
       security-events: write
-    uses: ttybitnik/pipelines/.github/workflows/secops.yaml@master
+    uses: ttybitnik/pipelines/.github/workflows/secops.yaml@v0.1.0  # (x-release-please-version)
 ```
 
 ### Using `actions`:
@@ -76,7 +78,7 @@ jobs:
           fetch-depth: "0"
       - name: Create git tag for release-please draft
         id: draft-tag
-        uses: ttybitnik/pipelines/.github/actions/release-please-draft-tag@master
+        uses: ttybitnik/pipelines/.github/actions/release-please-draft-tag@v0.1.0  # (x-release-please-version)
 ```
 
 ## License

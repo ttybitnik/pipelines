@@ -45,7 +45,7 @@ None
 ## Example
 
 > [!NOTE]
-> Releases in this repository are immutable. If you prefer, feel free to use the full semantic version (e.g., `v0.1.2`) instead of the commit hash.
+> Releases in this repository are immutable. Feel free to use the full semantic version (e.g., `v0.1.2`).
 
 ### Using `workflows`:
 
@@ -56,7 +56,7 @@ jobs:
       contents: read
       pull-requests: read
       security-events: write
-    uses: ttybitnik/pipelines/.github/workflows/go-checks.yaml@v0.1.0  # (x-release-please-version)
+    uses: ttybitnik/pipelines/.github/workflows/go-checks.yaml@v0.1.0  # x-release-please-version
     with:
       codeql-enable: true
 
@@ -64,7 +64,7 @@ jobs:
     permissions:
       contents: read
       security-events: write
-    uses: ttybitnik/pipelines/.github/workflows/secops.yaml@v0.1.0  # (x-release-please-version)
+    uses: ttybitnik/pipelines/.github/workflows/secops.yaml@v0.1.0  # x-release-please-version
 ```
 
 ### Using `actions`:
@@ -82,7 +82,7 @@ jobs:
           fetch-depth: "0"
       - name: Create git tag for release-please draft
         id: draft-tag
-        uses: ttybitnik/pipelines/.github/actions/release-please-draft-tag@v0.1.0  # (x-release-please-version)
+        uses: ttybitnik/pipelines/.github/actions/release-please-draft-tag@v0.1.0  # x-release-please-version
 ```
 
 ## License

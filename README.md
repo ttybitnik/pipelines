@@ -42,7 +42,7 @@ It provides reusable CI/CD pipelines, quality checks, and configuration patterns
 
 None
 
-## Example
+## Examples
 
 > [!NOTE]
 > Releases in this repository are immutable. Feel free to use the full semantic version (e.g., `v0.1.2`).

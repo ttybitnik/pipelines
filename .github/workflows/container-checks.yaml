@@ -1,0 +1,71 @@
+---
+name: Container Checks
+
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+    inputs:
+      hadolint-config-filename:
+        description: "Hadolint config filename"
+        required: false
+        default: "configs/hadolint.yaml"
+        type: string
+      hadolint-dockerfile:
+        description: "Hadolint Containerfile name to lint"
+        required: false
+        default: "Containerfile"
+        type: string
+      hadolint-recursive:
+        description: "Whether to recursively search for Dockerfiles"
+        required: false
+        default: true
+        type: boolean
+      mkdev-custom-enable:
+        description: "Whether to enable mkdev-custom job"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  quality-gate:
+    permissions:
+      contents: read
+      pull-requests: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+      - name: Lint Containerfiles with hadolint
+        id: hadolint
+        uses: hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5  # v3.3.0
+        with:
+          config: ${{ inputs.hadolint-config-filename }}
+          dockerfile: ${{ inputs.hadolint-dockerfile }}
+          recursive: ${{ inputs.hadolint-recursive }}
+      - name: Format and print GH step summary
+        if: always()
+        run: |
+          echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
+          echo "| **hadolint** | ${{ steps.hadolint.outcome }} |" >> $GITHUB_STEP_SUMMARY
+
+  mkdev-custom:
+    permissions:
+      contents: read
+      pull-requests: read
+    if: ${{ inputs.mkdev-custom-enable }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+      - name: Run mkdev custom linter and update scripts
+        id: mkdev
+        uses: ttybitnik/pipelines/.github/actions/mkdev-custom@master
+      - name: Format and print GH step summary
+        if: always()
+        run: |
+          echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
+          echo "| **linter** | ${{ steps.mkdev.outputs.linter }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **docs_needs_update** | ${{ steps.mkdev.outputs.docs_needs_update }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **makefiles_needs_update** | ${{ steps.mkdev.outputs.makefiles_needs_update }} |" >> $GITHUB_STEP_SUMMARY

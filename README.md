@@ -12,14 +12,16 @@ It provides reusable CI/CD pipelines, quality checks, and configuration patterns
 
 ### Reusable workflows
 
-| Workflow                                             | Description                                    |
-|------------------------------------------------------|------------------------------------------------|
-| [go-checks][go-checks-uri]                           | Go code quality checks.                        |
-| [go-deploy][go-deploy-uri]                           | Go code build and deployment.                  |
-| [secops][secops-uri]                                 | Security scanning and misconfiguration checks. |
-| [semver][semver-uri]                                 | Semantic versioning and release automation.    |
-| [yaml-checks][yaml-checks-uri]                       | YAML quality checks.                           |
+| Workflow                                 | Description                                    |
+|------------------------------------------|------------------------------------------------|
+| [container-checks][container-checks-uri] | Container quality checks.                      |
+| [go-checks][go-checks-uri]               | Go code quality checks.                        |
+| [go-deploy][go-deploy-uri]               | Go code build and deployment.                  |
+| [secops][secops-uri]                     | Security scanning and misconfiguration checks. |
+| [semver][semver-uri]                     | Semantic versioning and release automation.    |
+| [yaml-checks][yaml-checks-uri]           | YAML quality checks.                           |
 
+[container-checks-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/container-checks.container
 [go-checks-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/go-checks.yaml
 [go-deploy-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/go-deploy.yaml
 [secops-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/secops.yaml

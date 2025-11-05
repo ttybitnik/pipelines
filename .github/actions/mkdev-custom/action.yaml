@@ -18,6 +18,7 @@ runs:
   steps:
     - name: Check compliance with guidelines
       id: linter
+      shell: bash
       run: |
         ./linter.sh
     - name: Check README.md files changes as fallback

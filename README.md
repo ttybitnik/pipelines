@@ -21,7 +21,7 @@ It provides reusable CI/CD pipelines, quality checks, and configuration patterns
 | [semver][semver-uri]                     | Semantic versioning and release automation.    |
 | [yaml-checks][yaml-checks-uri]           | YAML quality checks.                           |
 
-[container-checks-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/container-checks.container
+[container-checks-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/container-checks.yaml
 [go-checks-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/go-checks.yaml
 [go-deploy-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/go-deploy.yaml
 [secops-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/secops.yaml

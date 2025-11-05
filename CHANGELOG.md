@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0](https://github.com/ttybitnik/pipelines/compare/v0.1.0...v0.2.0) (2025-11-05)
+
+
+### Features
+
+* **gh:** add container-checks workflow ([7fdd1fe](https://github.com/ttybitnik/pipelines/commit/7fdd1fe7ce0f007e1f3db1fcc14845400c17855f))
+* **gh:** add mkdev-custom action ([c6e8f18](https://github.com/ttybitnik/pipelines/commit/c6e8f18c9db5abfa9f970ff3dc8168aeb8bdf5a8))
+
+
+### Bug Fixes
+
+* **container:** remove duplicate inputs key ([7a88f7d](https://github.com/ttybitnik/pipelines/commit/7a88f7d14091dfc637900631968f097eceadabe6))
+* **mkdev:** add missing shell required property ([d8a486f](https://github.com/ttybitnik/pipelines/commit/d8a486f2d76306eef41bc2e1d26915a44727fd6a))
+
 ## [0.1.0](https://github.com/ttybitnik/pipelines/compare/v0.1.0...v0.1.0) (2025-11-04)
 
 

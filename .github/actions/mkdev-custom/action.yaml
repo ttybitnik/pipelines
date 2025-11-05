@@ -1,0 +1,55 @@
+---
+name: "Custom linter and update scripts checks"
+description: "Run custom linter and update scripts as fallback checks"
+
+outputs:
+  linter:
+    description: "Status from update-docs.sh"
+    value: ${{ steps.linter.outputs.checks }}
+  docs_needs_update:
+    description: "Status from update-docs.sh"
+    value: ${{ steps.docs.outputs.docs_needs_update }}
+  makefiles_needs_update:
+    description: "Status from update-makefiles.sh"
+    value: ${{ steps.makefiles.outputs.makefiles_needs_update }}
+
+runs:
+  using: composite
+  steps:
+    - name: Check compliance with guidelines
+      id: linter
+      run: |
+        ./linter.sh
+    - name: Check README.md files changes as fallback
+      id: docs
+      shell: bash
+      run: |
+        ./update-docs.sh
+
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "docs_needs_update=true" >> "$GITHUB_OUTPUT"
+          echo "::warning title=${{ github.job }}::run update-docs.sh to update docs"
+        else
+          echo "docs_needs_update=false" >> "$GITHUB_OUTPUT"
+        fi
+    - name: Check Makefiles changes as fallback
+      id: makefiles
+      shell: bash
+      run: |
+        ./update-makefiles.sh
+
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "makefiles_needs_update=true" >> "$GITHUB_OUTPUT"
+          echo "::warning title=${{ github.job }}::run update-makefiles.sh to update boilerplates"
+        else
+          echo "makefiles_needs_update=false" >> "$GITHUB_OUTPUT"
+        fi
+    - name: Fail if updates required
+      id: changes
+      shell: bash
+      if: |
+        steps.docs.outputs.docs_needs_update == 'true'
+        || steps.makefiles.outputs.makefiles_needs_update == 'true'
+      run: |
+        echo "::error title=${{ github.job }}::run scripts for the required updates"
+        exit 1

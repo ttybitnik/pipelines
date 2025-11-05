@@ -30,10 +30,12 @@ It provides reusable CI/CD pipelines, quality checks, and configuration patterns
 
 ### Actions
 
-| Action                                                   | Description                        |
-|----------------------------------------------------------|------------------------------------|
-| [release-please-draft-tag][release-please-draft-tag-uri] | Git tag for release-please drafts. |
+|----------------------------------------------------------|------------------------------------------|
+| Action                                                   | Description                              |
+| [mkdev-custom][mkdev-custom-uri]                         | Custom linter and update scripts checks. |
+| [release-please-draft-tag][release-please-draft-tag-uri] | Git tag for release-please drafts.       |
 
+[mkdev-custom-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/mkdev-custom/action.yaml
 [release-please-draft-tag-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/release-please-draft-tag/action.yaml
 
 ## Requirements

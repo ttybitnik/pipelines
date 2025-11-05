@@ -30,8 +30,8 @@ It provides reusable CI/CD pipelines, quality checks, and configuration patterns
 
 ### Actions
 
-|----------------------------------------------------------|------------------------------------------|
 | Action                                                   | Description                              |
+|----------------------------------------------------------|------------------------------------------|
 | [mkdev-custom][mkdev-custom-uri]                         | Custom linter and update scripts checks. |
 | [release-please-draft-tag][release-please-draft-tag-uri] | Git tag for release-please drafts.       |
 

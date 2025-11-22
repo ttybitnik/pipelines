@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.2.0](https://github.com/ttybitnik/pipelines/compare/v0.1.0...v0.2.0) (2025-11-22)
+
+
+### Features
+
+* **gh:** add container-checks workflow ([7fdd1fe](https://github.com/ttybitnik/pipelines/commit/7fdd1fe7ce0f007e1f3db1fcc14845400c17855f))
+* **gh:** add mkdev-custom action ([c6e8f18](https://github.com/ttybitnik/pipelines/commit/c6e8f18c9db5abfa9f970ff3dc8168aeb8bdf5a8))
+* **semver:** define inputs types explicitly ([ac7c554](https://github.com/ttybitnik/pipelines/commit/ac7c554dd45e93b331fee1720c8c92358572ca13))
+
+
+### Bug Fixes
+
+* **container:** remove duplicate inputs key ([7a88f7d](https://github.com/ttybitnik/pipelines/commit/7a88f7d14091dfc637900631968f097eceadabe6))
+* **mkdev:** add missing shell required property ([d8a486f](https://github.com/ttybitnik/pipelines/commit/d8a486f2d76306eef41bc2e1d26915a44727fd6a))
+
+
+### Dependencies
+
+* **gh:** bump actions/checkout from 5.0.0 to 5.0.1 ([#5](https://github.com/ttybitnik/pipelines/issues/5)) ([e7f83b8](https://github.com/ttybitnik/pipelines/commit/e7f83b8a3f3aee85fba93f088fb67550bf04e149))
+* **gh:** bump github/codeql-action from 4.31.2 to 4.31.3 ([#6](https://github.com/ttybitnik/pipelines/issues/6)) ([3be85a0](https://github.com/ttybitnik/pipelines/commit/3be85a09bcecdef5ac8aebdb70bdf88eef392e9e))
+* **gh:** bump golangci/golangci-lint-action from 8.0.0 to 9.0.0 ([#4](https://github.com/ttybitnik/pipelines/issues/4)) ([9acd3ac](https://github.com/ttybitnik/pipelines/commit/9acd3ac14a2b52ddf69be301b8808c41b1e6517b))
+
 ## [0.1.0](https://github.com/ttybitnik/pipelines/compare/v0.1.0...v0.1.0) (2025-11-04)
 
 

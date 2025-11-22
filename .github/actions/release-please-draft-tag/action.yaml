@@ -6,14 +6,17 @@ inputs:
     description: 'Prefix for the tag (e.g., "v" for "v0.1.0", or empty for "0.1.0")'
     required: false
     default: "v"
+    type: string
   manifest-filename:
     description: "Release-please manifest file name"
     required: false
     default: "./configs/release-please-manifest.json"
+    type: string
   manifest-package:
     description: 'Release-please manifest package (e.g., "packages/backend" for monorepo packages)'
     required: false
     default: "."
+    type: string
 
 outputs:
   tag_created:

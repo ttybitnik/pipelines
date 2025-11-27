@@ -68,3 +68,4 @@ jobs:
           echo "| **linter** | ${{ steps.mkdev.outputs.linter }} |" >> $GITHUB_STEP_SUMMARY
           echo "| **docs_needs_update** | ${{ steps.mkdev.outputs.docs_needs_update }} |" >> $GITHUB_STEP_SUMMARY
           echo "| **makefiles_needs_update** | ${{ steps.mkdev.outputs.makefiles_needs_update }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **omni_needs_update** | ${{ steps.mkdev.outputs.omni_needs_update }} |" >> $GITHUB_STEP_SUMMARY

@@ -12,6 +12,9 @@ outputs:
   makefiles_needs_update:
     description: "Status from update-makefiles.sh"
     value: ${{ steps.makefiles.outputs.makefiles_needs_update }}
+  omni_needs_update:
+    description: "Status from update-omni.sh"
+    value: ${{ steps.omni.outputs.omni_needs_update }}
 
 runs:
   using: composite
@@ -45,12 +48,25 @@ runs:
         else
           echo "makefiles_needs_update=false" >> "$GITHUB_OUTPUT"
         fi
+    - name: Check Omni changes as fallback
+      id: omni
+      shell: bash
+      run: |
+        ./update-omni.sh
+
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "omni_needs_update=true" >> "$GITHUB_OUTPUT"
+          echo "::warning title=${{ github.job }}::run update-omni.sh to update boilerplates"
+        else
+          echo "omni_needs_update=false" >> "$GITHUB_OUTPUT"
+        fi
     - name: Fail if updates required
       id: changes
       shell: bash
       if: |
         steps.docs.outputs.docs_needs_update == 'true'
         || steps.makefiles.outputs.makefiles_needs_update == 'true'
+        || steps.omni.outputs.omni_needs_update == 'true'
       run: |
         echo "::error title=${{ github.job }}::run scripts for the required updates"
         exit 1

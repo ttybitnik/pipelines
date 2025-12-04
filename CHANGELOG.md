@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.0](https://github.com/ttybitnik/pipelines/compare/v0.2.0...v0.3.0) (2025-12-04)
+
+
+### Features
+
+* **container:** add omni fallback output to summary ([92a5265](https://github.com/ttybitnik/pipelines/commit/92a5265a6754c097f9affa680b183380124a9dda))
+* **mkdev:** add omni update fallback step ([1a966b3](https://github.com/ttybitnik/pipelines/commit/1a966b3e3f8ed431dd3332350174de4c21f196d7))
+
+
+### Dependencies
+
+* **gh:** bump actions/setup-go from 6.0.0 to 6.1.0 ([#8](https://github.com/ttybitnik/pipelines/issues/8)) ([23093c8](https://github.com/ttybitnik/pipelines/commit/23093c817e1c16b61fd10ae05d1d96bbbe0a38f8))
+* **gh:** bump actions/setup-python from 6.0.0 to 6.1.0 ([#11](https://github.com/ttybitnik/pipelines/issues/11)) ([83d3664](https://github.com/ttybitnik/pipelines/commit/83d3664cd0cd320ca4dfa58f551e04c1c461ea82))
+* **gh:** bump github/codeql-action from 4.31.4 to 4.31.6 ([#12](https://github.com/ttybitnik/pipelines/issues/12)) ([56b7572](https://github.com/ttybitnik/pipelines/commit/56b7572fecfe6afe00fcf39f89df6e9e85257861))
+* **gh:** bump golangci/golangci-lint-action from 9.0.0 to 9.1.0 ([#7](https://github.com/ttybitnik/pipelines/issues/7)) ([82c200c](https://github.com/ttybitnik/pipelines/commit/82c200c2c447c0372cd49b8837955ab4b87221f5))
+
 ## [0.2.0](https://github.com/ttybitnik/pipelines/compare/v0.1.0...v0.2.0) (2025-11-22)
 
 

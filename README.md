@@ -45,7 +45,7 @@ None
 ## Examples
 
 > [!NOTE]
-> Releases in this repository are immutable. Feel free to use the full semantic version (e.g., `v0.1.2`).
+> Releases in this repository are immutable. The full semantic version (e.g., `v0.1.2`) provides a permanent, reliable pointer.
 
 ### Using `workflows`:
 

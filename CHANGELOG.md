@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1](https://github.com/ttybitnik/pipelines/compare/v0.3.0...v0.3.1) (2026-01-14)
+
+
+### Dependencies
+
+* **gh:** bump actions/checkout from 6.0.0 to 6.0.1 ([#13](https://github.com/ttybitnik/pipelines/issues/13)) ([d3b4ed7](https://github.com/ttybitnik/pipelines/commit/d3b4ed74c75afca57ceef508ff21fb2bf90cbbc7))
+* **gh:** bump github/codeql-action from 4.31.6 to 4.31.10 ([#17](https://github.com/ttybitnik/pipelines/issues/17)) ([5e0da15](https://github.com/ttybitnik/pipelines/commit/5e0da151a775d12857400c00fd9833aa362d6601))
+
 ## [0.3.0](https://github.com/ttybitnik/pipelines/compare/v0.2.0...v0.3.0) (2025-12-04)
 
 

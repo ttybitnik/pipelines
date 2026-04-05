@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.3.2](https://github.com/ttybitnik/pipelines/compare/v0.3.1...v0.3.2) (2026-04-05)
+
+
+### Bug Fixes
+
+* **secops:** bump aquasecurity/trivy-action from 0.34.0 to 0.34.2 ([1009c5e](https://github.com/ttybitnik/pipelines/commit/1009c5eb081ff4a39e51431b473fa803c051b353))
+
+
+### Dependencies
+
+* **gh:** bump actions/checkout from 6.0.1 to 6.0.2 ([#20](https://github.com/ttybitnik/pipelines/issues/20)) ([53b9072](https://github.com/ttybitnik/pipelines/commit/53b90723e4ec82ada37ac49c2e7fbe239da6a2e2))
+* **gh:** bump actions/setup-go from 6.1.0 to 6.3.0 ([#29](https://github.com/ttybitnik/pipelines/issues/29)) ([c98969a](https://github.com/ttybitnik/pipelines/commit/c98969a28cbce18a1b3a16dbed9953591163ff68))
+* **gh:** bump actions/setup-python from 6.1.0 to 6.2.0 ([#21](https://github.com/ttybitnik/pipelines/issues/21)) ([1ce4bdf](https://github.com/ttybitnik/pipelines/commit/1ce4bdfe174b15978a6712a37de77f55e7e44ee3))
+* **gh:** bump aquasecurity/trivy-action from 0.33.1 to 0.34.0 ([#26](https://github.com/ttybitnik/pipelines/issues/26)) ([5486c09](https://github.com/ttybitnik/pipelines/commit/5486c09aa1d0bd0aa6b40c457fe091cb70653e9c))
+* **gh:** bump aquasecurity/trivy-action from 0.34.2 to 0.35.0 ([#28](https://github.com/ttybitnik/pipelines/issues/28)) ([627c2f6](https://github.com/ttybitnik/pipelines/commit/627c2f631a51c56a75c9283e18583c29b094eb9b))
+* **gh:** bump github/codeql-action from 4.31.10 to 4.33.0 ([#30](https://github.com/ttybitnik/pipelines/issues/30)) ([305cf39](https://github.com/ttybitnik/pipelines/commit/305cf39592d9ff5a89651518ca16bfd4cdb2df45))
+
 ## [0.3.1](https://github.com/ttybitnik/pipelines/compare/v0.3.0...v0.3.1) (2026-01-14)
 
 

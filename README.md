@@ -56,7 +56,7 @@ jobs:
       contents: read
       pull-requests: read
       security-events: write
-    uses: ttybitnik/pipelines/.github/workflows/go-checks.yaml@v0.3.1  # x-release-please-version
+    uses: ttybitnik/pipelines/.github/workflows/go-checks.yaml@v0.3.2  # x-release-please-version
     with:
       codeql-enable: true
 
@@ -64,7 +64,7 @@ jobs:
     permissions:
       contents: read
       security-events: write
-    uses: ttybitnik/pipelines/.github/workflows/secops.yaml@v0.3.1  # x-release-please-version
+    uses: ttybitnik/pipelines/.github/workflows/secops.yaml@v0.3.2  # x-release-please-version
 ```
 
 ### Using `actions`:
@@ -82,7 +82,7 @@ jobs:
           fetch-depth: "0"
       - name: Create git tag for release-please draft
         id: draft-tag
-        uses: ttybitnik/pipelines/.github/actions/release-please-draft-tag@v0.3.1  # x-release-please-version
+        uses: ttybitnik/pipelines/.github/actions/release-please-draft-tag@v0.3.2  # x-release-please-version
 ```
 
 ## License

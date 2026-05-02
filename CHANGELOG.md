@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.3](https://github.com/ttybitnik/pipelines/compare/v0.3.2...v0.3.3) (2026-05-02)
+
+
+### Dependencies
+
+* **gh:** bump aquasecurity/trivy-action from 0.35.0 to 0.36.0 ([#35](https://github.com/ttybitnik/pipelines/issues/35)) ([7c96c65](https://github.com/ttybitnik/pipelines/commit/7c96c651e5dfe87c5443f8db650c480a03a073fc))
+* **gh:** bump github/codeql-action from 4.35.1 to 4.35.2 ([#34](https://github.com/ttybitnik/pipelines/issues/34)) ([629cbce](https://github.com/ttybitnik/pipelines/commit/629cbce63e77248a2a20c5fe078bf7e576b7568f))
+* **gh:** bump googleapis/release-please-action from 4.4.0 to 5.0.0 ([#37](https://github.com/ttybitnik/pipelines/issues/37)) ([e507440](https://github.com/ttybitnik/pipelines/commit/e507440d58c4a6cdb7ec9d18231792e23efc5c40))
+* **gh:** bump goreleaser/goreleaser-action from 6.4.0 to 7.2.1 ([#36](https://github.com/ttybitnik/pipelines/issues/36)) ([3d2a4e6](https://github.com/ttybitnik/pipelines/commit/3d2a4e6e8d0be200ca8ef0ab26a21a432b2e85c9))
+
 ## [0.3.2](https://github.com/ttybitnik/pipelines/compare/v0.3.1...v0.3.2) (2026-04-05)
 
 

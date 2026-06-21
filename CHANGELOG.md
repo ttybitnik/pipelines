@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.4.0](https://github.com/ttybitnik/pipelines/compare/v0.3.3...v0.4.0) (2026-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **semver:** deprecate release-please-draft-tag
+
+### Features
+
+* **semver:** deprecate release-please-draft-tag ([54116b5](https://github.com/ttybitnik/pipelines/commit/54116b55c6ddd0d45f14afc0812cfc23059521ae))
+
+
+### Dependencies
+
+* **gh:** bump actions/checkout from 6.0.2 to 7.0.0 ([#45](https://github.com/ttybitnik/pipelines/issues/45)) ([0c4b405](https://github.com/ttybitnik/pipelines/commit/0c4b405bd5b440cec3ab56019674542ce78716e7))
+* **gh:** bump github/codeql-action from 4.35.2 to 4.36.2 ([#47](https://github.com/ttybitnik/pipelines/issues/47)) ([c7d469b](https://github.com/ttybitnik/pipelines/commit/c7d469b8867efcd35d86907b860eed0a312dca4b))
+* **gh:** bump golangci/golangci-lint-action from 9.2.0 to 9.2.1 ([#44](https://github.com/ttybitnik/pipelines/issues/44)) ([47e8796](https://github.com/ttybitnik/pipelines/commit/47e8796f691d73754e81f8b149b4cf273dc043a0))
+* **gh:** bump goreleaser/goreleaser-action from 7.2.1 to 7.2.2 ([#42](https://github.com/ttybitnik/pipelines/issues/42)) ([db61059](https://github.com/ttybitnik/pipelines/commit/db61059d2d57ee24bce0215129bb3c7483bf4818))
+
 ## [0.3.3](https://github.com/ttybitnik/pipelines/compare/v0.3.2...v0.3.3) (2026-05-02)
 
 

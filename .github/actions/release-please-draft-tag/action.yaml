@@ -1,3 +1,6 @@
+# DEPRECATED 2026-05-26: Since release-please introduced this feature upstream,
+# this custom workaround is not necessary anymore.
+# See: <https://github.com/googleapis/release-please/pull/2627>
 ---
 name: "Git tag for release-please drafts"
 description: "Create git tag for release-please drafts and immutable releases"

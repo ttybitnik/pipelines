@@ -3,16 +3,6 @@ name: Semantic Versioning
 
 on:  # yamllint disable-line rule:truthy
   workflow_call:
-    inputs:
-      release-please-draft-tag-enable:
-        description: "Whether to enable release-please-draft-tag job"
-        required: false
-        default: false
-        type: boolean
-      commit-message:
-        description: "Commit message that triggered the workflow"
-        required: true
-        type: string
     outputs:
       releases_created:
         description: "Whether releases were created"
@@ -37,37 +27,10 @@ on:  # yamllint disable-line rule:truthy
         value: ${{ jobs.release-please.outputs.sha }}
 
 jobs:
-  release-please-draft-tag:
-    permissions:
-      contents: write
-    if: |
-      inputs.release-please-draft-tag-enable
-      && contains(inputs.commit-message, 'chore(master): release')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout default branch
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
-        with:
-          fetch-depth: "0"
-      - name: Create git tag for release-please draft
-        id: draft-tag
-        uses: ttybitnik/pipelines/.github/actions/release-please-draft-tag@master
-      - name: Format and print GH step summary
-        if: always()
-        run: |
-          echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
-          echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
-          echo "| **package** | ${{ steps.draft-tag.outputs.package }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| **prefix** | ${{ steps.draft-tag.outputs.prefix }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| **manifest_version** | ${{ steps.draft-tag.outputs.manifest_version }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| **tag_version** | ${{ steps.draft-tag.outputs.tag_version }} |" >> $GITHUB_STEP_SUMMARY
-
   release-please:
     permissions:
       contents: write
       pull-requests: write
-    needs: [release-please-draft-tag]
-    if: always()
     runs-on: ubuntu-latest
     outputs:
       releases_created: ${{ steps.release.outputs.releases_created }}

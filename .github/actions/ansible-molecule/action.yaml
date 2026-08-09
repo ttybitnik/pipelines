@@ -1,0 +1,35 @@
+---
+name: "Base for Molecule collection tests"
+description: "Run molecule test against a given role in an Ansible collection"
+
+inputs:
+  role-name:
+    description: "Name of the role to run tests against"
+    required: true
+    type: string
+  molecule-config:
+    description: "Molecule base configuration file name"
+    required: true
+    type: string
+
+outputs:
+  molecule_test:
+    description: "Status from molecule test"
+    value: ${{ steps.molecule.outcome }}
+
+runs:
+  using: composite
+  steps:
+    - name: Run Molecule tests
+      id: molecule
+      shell: bash
+      env:
+        INPUT_ROLE_NAME: ${{ inputs.role-name }}
+        PY_COLORS: '1'
+        ANSIBLE_FORCE_COLOR: '1'
+        INPUT_MOLECULE_CONFIG: ${{ inputs.molecule-config }}
+      run: >
+        molecule
+        --base-config "$INPUT_MOLECULE_CONFIG"
+        test
+        --scenario-name "$INPUT_ROLE_NAME"

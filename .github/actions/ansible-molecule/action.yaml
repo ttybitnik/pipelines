@@ -7,9 +7,9 @@ inputs:
     description: "Name of the role to run tests against"
     required: true
     type: string
-  molecule-config:
-    description: "Molecule default configuration file name"
-    required: true
+  base-scenario:
+    description: "Molecule base scenario file name"
+    required: false
     default: "extensions/molecule/resources/molecule.yml"
     type: string
 
@@ -26,11 +26,11 @@ runs:
       shell: bash
       env:
         INPUT_ROLE_NAME: ${{ inputs.role-name }}
+        INPUT_BASE_SCENARIO: ${{ inputs.base-scenario }}
         PY_COLORS: '1'
         ANSIBLE_FORCE_COLOR: '1'
-        INPUT_MOLECULE_CONFIG: ${{ inputs.molecule-config }}
       run: >
         molecule
-        --base-config "$INPUT_MOLECULE_CONFIG"
+        --base-config "$INPUT_BASE_SCENARIO"
         test
         --scenario-name "$INPUT_ROLE_NAME"

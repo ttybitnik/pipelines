@@ -24,11 +24,21 @@ on:  # yamllint disable-line rule:truthy
         required: false
         default: "configs/ansible-lint-ignore.txt"
         type: string
-      ansible-molecule-enable:
+      molecule-enable:
         description: "Whether to enable ansible-molecule job"
         required: false
         default: false
         type: boolean
+      molecule-role-name:
+        description: "Name of the role to run mole test against"
+        required: false
+        # no default value
+        type: string
+      molecule-base-scenario:
+        description: "Molecule base scenario file name"
+        required: false
+        default: "extensions/molecule/resources/molecule.yml"
+        type: string
 
 jobs:
   quality-gate:
@@ -79,7 +89,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-    if: ${{ inputs.ansible-molecule-enable }}
+    if: ${{ inputs.molecule-enable }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout default branch
@@ -87,6 +97,9 @@ jobs:
       - name: Run ansible-molecule custom linter and update scripts
         id: ansible-molecule
         uses: ttybitnik/pipelines/.github/actions/ansible-molecule@master
+        with:
+          role-name: ${{ inputs.molecule-role-name }}
+          base-scenario: ${{ inputs.molecule-base-scenario }}
       - name: Format and print GH step summary
         if: always()
         run: |

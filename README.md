@@ -35,9 +35,11 @@ It provides reusable CI/CD pipelines, quality checks, and configuration patterns
 | Action                                                   | Description                              |
 |----------------------------------------------------------|------------------------------------------|
 | [ansible-molecule][ansible-molecule-uri]                 | Base for Molecule collection tests.      |
+| [ansible-status][ansible-status-uri]                     | Status of Molecule collection workflows. |
 | [mkdev-custom][mkdev-custom-uri]                         | Custom linter and update scripts checks. |
 | [release-please-draft-tag][release-please-draft-tag-uri] | Git tag for release-please drafts.       |
 
+[ansible-status-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/ansible-status/action.yaml
 [ansible-molecule-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/ansible-molecule/action.yaml
 [mkdev-custom-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/mkdev-custom/action.yaml
 [release-please-draft-tag-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/release-please-draft-tag/action.yaml

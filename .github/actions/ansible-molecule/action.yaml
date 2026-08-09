@@ -8,8 +8,9 @@ inputs:
     required: true
     type: string
   molecule-config:
-    description: "Molecule base configuration file name"
+    description: "Molecule default configuration file name"
     required: true
+    default: "extensions/molecule/resources/molecule.yml"
     type: string
 
 outputs:

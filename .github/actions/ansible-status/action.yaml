@@ -1,0 +1,107 @@
+name: "Status for Ansible collection Molecule workflows"
+description: Check the status of Ansible collection workflows based on their type
+inputs:
+  check-role:
+    description: "Check role workflows (role-*.yaml)"
+    required: false
+    default: false
+    type: boolean
+  check-module:
+    description: "Check module workflows (module-*.yaml)"
+    required: false
+    default: false
+    type: boolean
+  check-plugin:
+    description: "Check plugin workflows (plugin-*.yaml)"
+    required: false
+    default: false
+    type: boolean
+
+outputs:
+  checked_workflows:
+    description: "Comma-separated list of checked workflows"
+    value: ${{ steps.check-status.outputs.checked_workflows || 'none' }}
+
+runs:
+  using: composite
+  steps:
+    - name: Check status of workflows
+      id: check-status
+      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+      env:
+        INPUT_CHECK_ROLE: ${{ inputs.check-role }}
+        INPUT_CHECK_MODULE: ${{ inputs.check-module }}
+        INPUT_CHECK_PLUGIN: ${{ inputs.check-plugin }}
+      with:
+        script: |
+          const checkRole = process.env.INPUT_CHECK_ROLE === 'true';
+          const checkModule = process.env.INPUT_CHECK_MODULE === 'true';
+          const checkPlugin = process.env.INPUT_CHECK_PLUGIN === 'true';
+
+          const workflowTypes = [];
+          if (checkRole) workflowTypes.push('role');
+          if (checkModule) workflowTypes.push('module');
+          if (checkPlugin) workflowTypes.push('plugin');
+
+          if (workflowTypes.length === 0) {
+            core.setFailed('No workflow types selected: enable at least one type');
+            return;
+          }
+
+          const workflowFiles = await github.rest.repos.getContent({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            path: '.github/workflows',
+          });
+
+          const checkedWorkflows = [];
+          let allWorkflowsSucceeded = true;
+
+          for (const type of workflowTypes) {
+            const workflowPattern = `${type}-*.yaml`;
+            core.info(`Checking workflows matching pattern: ${workflowPattern}`);
+
+            const matchingWorkflows = workflowFiles.data.filter(file =>
+              file.name.startsWith(`${type}-`) && (file.name.endsWith('.yaml') || file.name.endsWith('.yml'))
+            );
+
+            if (matchingWorkflows.length === 0) {
+              core.info(`No workflows found matching pattern: ${workflowPattern}`);
+              continue;
+            }
+
+            for (const workflow of matchingWorkflows) {
+              const workflowName = workflow.name;
+              core.info(`Checking status of workflow: ${workflowName}`);
+              checkedWorkflows.push(workflowName);
+
+              const runs = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: workflowName,
+                status: 'completed',
+                per_page: 1,
+              });
+
+              if (runs.data.total_count > 0) {
+                const latestRun = runs.data.workflow_runs[0];
+                core.info(`Workflow ${workflowName} status: ${latestRun.conclusion}`);
+
+                if (latestRun.conclusion !== 'success') {
+                  allWorkflowsSucceeded = false;
+                  core.error(`Workflow ${workflowName} failed with conclusion: ${latestRun.conclusion}`);
+                }
+              } else {
+                allWorkflowsSucceeded = false;
+                core.error(`No completed runs found for workflow: ${workflowName}`);
+              }
+            }
+          }
+
+          core.setOutput('checked_workflows', [...new Set(checkedWorkflows)].join(', '));
+
+          if (!allWorkflowsSucceeded) {
+            core.setFailed('One or more workflows failed or have no completed runs.');
+          } else {
+            core.info('All checked workflows completed successfully.');
+          }

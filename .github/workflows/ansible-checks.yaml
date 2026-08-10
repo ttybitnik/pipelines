@@ -70,8 +70,8 @@ jobs:
         id: ansiblelint
         shell: bash
         env:
-          ANSIBLELINT_CONFIG: ${{ inputs.ansiblelint-config }}
-          ANSIBLELINT_IGNORE: ${{ inputs.ansiblelint-ignore }}
+          ANSIBLELINT_CONFIG: ${{ inputs.ansiblelint-config-filename }}
+          ANSIBLELINT_IGNORE: ${{ inputs.ansiblelint-ignore-filename }}
           ANSIBLE_FORCE_COLOR: 'true'
         run: >
           ansible-lint
@@ -94,10 +94,11 @@ jobs:
     steps:
       - name: Checkout default branch
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
-      - name: Run ansible-molecule custom linter and update scripts
+      - name: Run ansible-molecule tests
         id: ansible-molecule
         uses: ttybitnik/pipelines/.github/actions/ansible-molecule@master
         with:
+          python-version: ${{ inputs.python-version }}
           role-name: ${{ inputs.molecule-role-name }}
           base-scenario: ${{ inputs.molecule-base-scenario }}
       - name: Format and print GH step summary

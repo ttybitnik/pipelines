@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.5.0](https://github.com/ttybitnik/pipelines/compare/v0.4.0...v0.5.0) (2026-08-10)
+
+
+### Features
+
+* **ansible-checks:** add status-enable input ([1e259d3](https://github.com/ttybitnik/pipelines/commit/1e259d3d1c3e2f4014ac40c984a044bc2525aeab))
+* **ansible-checks:** call ansible-status within the workflow ([439a099](https://github.com/ttybitnik/pipelines/commit/439a09945c1a236c1808a3e1ca67a82a835a8e23))
+* **ansible-checks:** pass inputs to ansible-molecule action ([1ba1441](https://github.com/ttybitnik/pipelines/commit/1ba144177fb1b86c7de3097a2a6876079ea4cf37))
+* **gh:** add ansible-checks workflow ([9cf9404](https://github.com/ttybitnik/pipelines/commit/9cf9404b0869066aeddd53e425756cef6aed69a7))
+* **gh:** add ansible-molecule action ([2f3a501](https://github.com/ttybitnik/pipelines/commit/2f3a50123364198c4901c62e129550582b864327))
+* **gh:** add ansible-status action ([e5ee7bb](https://github.com/ttybitnik/pipelines/commit/e5ee7bbf4b69de8e7dccff5d622d22d851119a0e))
+
+
+### Bug Fixes
+
+* **ansible-status:** prevent raw stack traces ([cba45f9](https://github.com/ttybitnik/pipelines/commit/cba45f9560f4910a5e97c58f28d2d781e8c7792a))
+* **ansible:** install molecule and correct input key ([1980462](https://github.com/ttybitnik/pipelines/commit/1980462a832cfbfd32a98c70184a9a53744cf06e))
+
 ## [0.4.0](https://github.com/ttybitnik/pipelines/compare/v0.3.3...v0.4.0) (2026-06-21)
 
 

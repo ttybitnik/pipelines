@@ -39,6 +39,11 @@ on:  # yamllint disable-line rule:truthy
         required: false
         default: "extensions/molecule/resources/molecule.yml"
         type: string
+      status-enable:
+        description: "Whether to enable ansible-status job"
+        required: false
+        default: false
+        type: boolean
       status-check-role:
         description: "Check role workflows (role-*.yaml)"
         required: false
@@ -61,9 +66,10 @@ jobs:
       contents: read
       pull-requests: read
       # checks: write
-    runs-on: ubuntu-latest
     env:
       PY_COLORS: '1'
+    if: ${{ !inputs.status-enable }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout default branch
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
@@ -127,7 +133,9 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-    needs: [ansible-molecule]
+      # only required for workflows in private repositories
+      # actions: read
+    if: ${{ inputs.status-enable }}
     runs-on: ubuntu-latest
     steps:
       - name: Run ansible-status checks

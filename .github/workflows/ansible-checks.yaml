@@ -39,6 +39,21 @@ on:  # yamllint disable-line rule:truthy
         required: false
         default: "extensions/molecule/resources/molecule.yml"
         type: string
+      status-check-role:
+        description: "Check role workflows (role-*.yaml)"
+        required: false
+        default: true
+        type: boolean
+      status-check-module:
+        description: "Check module workflows (module-*.yaml)"
+        required: false
+        default: false
+        type: boolean
+      status-check-plugin:
+        description: "Check plugin workflows (plugin-*.yaml)"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   quality-gate:
@@ -95,7 +110,7 @@ jobs:
       - name: Checkout default branch
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
       - name: Run ansible-molecule tests
-        id: ansible-molecule
+        id: molecule
         uses: ttybitnik/pipelines/.github/actions/ansible-molecule@master
         with:
           python-version: ${{ inputs.python-version }}
@@ -106,4 +121,26 @@ jobs:
         run: |
           echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
-          echo "| **ansible-molecule** | ${{ steps.ansible-molecule.outcome }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **molecule** | ${{ steps.molecule.outcome }} |" >> $GITHUB_STEP_SUMMARY
+
+  ansible-status:
+    permissions:
+      contents: read
+      pull-requests: read
+    needs: [ansible-molecule]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run ansible-status checks
+        id: status
+        uses: ttybitnik/pipelines/.github/actions/ansible-status@master
+        with:
+          check-role: ${{ inputs.status-check-role }}
+          check-module: ${{ inputs.status-check-module }}
+          check-plugin: ${{ inputs.status-check-plugin }}
+      - name: Format and print GH step summary
+        if: always()
+        run: |
+          echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
+          echo "| **collection_status** | ${{ steps.status.outcome }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **checked_workflows** | ${{ steps.status.outputs.checked_workflows }} |" >> $GITHUB_STEP_SUMMARY

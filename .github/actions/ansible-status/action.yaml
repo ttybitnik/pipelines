@@ -4,7 +4,7 @@ inputs:
   check-role:
     description: "Check role workflows (role-*.yaml)"
     required: false
-    default: false
+    default: true
     type: boolean
   check-module:
     description: "Check module workflows (module-*.yaml)"

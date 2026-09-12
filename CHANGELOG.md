@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.5.0](https://github.com/ttybitnik/pipelines/compare/v0.4.0...v0.5.0) (2026-09-12)
+
+
+### Features
+
+* **ansible-checks:** add status-enable input ([1e259d3](https://github.com/ttybitnik/pipelines/commit/1e259d3d1c3e2f4014ac40c984a044bc2525aeab))
+* **ansible-checks:** call ansible-status within the workflow ([439a099](https://github.com/ttybitnik/pipelines/commit/439a09945c1a236c1808a3e1ca67a82a835a8e23))
+* **ansible-checks:** pass inputs to ansible-molecule action ([1ba1441](https://github.com/ttybitnik/pipelines/commit/1ba144177fb1b86c7de3097a2a6876079ea4cf37))
+* **gh:** add ansible-checks workflow ([9cf9404](https://github.com/ttybitnik/pipelines/commit/9cf9404b0869066aeddd53e425756cef6aed69a7))
+* **gh:** add ansible-molecule action ([2f3a501](https://github.com/ttybitnik/pipelines/commit/2f3a50123364198c4901c62e129550582b864327))
+* **gh:** add ansible-status action ([e5ee7bb](https://github.com/ttybitnik/pipelines/commit/e5ee7bbf4b69de8e7dccff5d622d22d851119a0e))
+
+
+### Bug Fixes
+
+* **ansible-status:** prevent raw stack traces ([cba45f9](https://github.com/ttybitnik/pipelines/commit/cba45f9560f4910a5e97c58f28d2d781e8c7792a))
+* **ansible:** install molecule and correct input key ([1980462](https://github.com/ttybitnik/pipelines/commit/1980462a832cfbfd32a98c70184a9a53744cf06e))
+
+
+### Dependencies
+
+* **gh:** bump actions/setup-go from 6.4.0 to 6.5.0 ([#51](https://github.com/ttybitnik/pipelines/issues/51)) ([f36f024](https://github.com/ttybitnik/pipelines/commit/f36f024248fe4b7babda0c868ce2e6799f192ba2))
+* **gh:** bump actions/setup-python from 6.2.0 to 6.3.0 ([#49](https://github.com/ttybitnik/pipelines/issues/49)) ([31b24aa](https://github.com/ttybitnik/pipelines/commit/31b24aab130a56ab19126e8c631891d52324465a))
+* **gh:** bump github/codeql-action/analyze from 4.36.2 to 4.36.3 ([#53](https://github.com/ttybitnik/pipelines/issues/53)) ([3749abf](https://github.com/ttybitnik/pipelines/commit/3749abf16581aa0ff0dc9fd0f11a2941a0660a7a))
+* **gh:** bump golangci/golangci-lint-action from 9.2.1 to 9.3.0 ([#52](https://github.com/ttybitnik/pipelines/issues/52)) ([e6ea5ff](https://github.com/ttybitnik/pipelines/commit/e6ea5ff223e0effd1753ac751ecd304a4b7d26c7))
+* **gh:** bump goreleaser/goreleaser-action from 7.2.2 to 7.2.3 ([#50](https://github.com/ttybitnik/pipelines/issues/50)) ([bc902ba](https://github.com/ttybitnik/pipelines/commit/bc902ba0cd71d550f4f44d1edbd453a49a9fba29))
+
 ## [0.4.0](https://github.com/ttybitnik/pipelines/compare/v0.3.3...v0.4.0) (2026-06-21)
 
 

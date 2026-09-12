@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/ttybitnik/pipelines/compare/v0.5.0...v0.5.1) (2026-09-12)
+
+
+### Dependencies
+
+* **gh:** bump github/codeql-action from 4.36.2 to 4.36.3 ([2ba76ef](https://github.com/ttybitnik/pipelines/commit/2ba76ef159d0148a4dcad103206aaade9db880c6))
+
 ## [0.5.0](https://github.com/ttybitnik/pipelines/compare/v0.4.0...v0.5.0) (2026-09-12)
 
 

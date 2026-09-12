@@ -1,0 +1,49 @@
+---
+name: "Base for Molecule collection tests"
+description: "Run molecule test against a given role in an Ansible collection"
+
+inputs:
+  python-version:
+    description: "Python version to use"
+    required: false
+    default: "3.x"
+    type: string
+  role-name:
+    description: "Name of the role to run tests against"
+    required: true
+    type: string
+  base-scenario:
+    description: "Molecule base scenario file name"
+    required: false
+    default: "extensions/molecule/resources/molecule.yml"
+    type: string
+
+outputs:
+  molecule_test:
+    description: "Status from molecule test"
+    value: ${{ steps.molecule.outcome }}
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Install test dependencies
+      shell: bash
+      run: |
+        pip3 install ansible molecule
+    - name: Run Molecule tests
+      id: molecule
+      shell: bash
+      env:
+        INPUT_ROLE_NAME: ${{ inputs.role-name }}
+        INPUT_BASE_SCENARIO: ${{ inputs.base-scenario }}
+        PY_COLORS: '1'
+        ANSIBLE_FORCE_COLOR: '1'
+      run: >
+        molecule
+        --base-config "$INPUT_BASE_SCENARIO"
+        test
+        --scenario-name "$INPUT_ROLE_NAME"

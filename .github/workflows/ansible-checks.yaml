@@ -1,0 +1,154 @@
+---
+name: Ansible Checks
+
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+      python-version:
+        description: "Python version to use"
+        required: false
+        default: "3.x"
+        type: string
+      yamllint-config-filename:
+        description: "Yamllint config filename"
+        required: false
+        default: "configs/yamllint.yml"
+        type: string
+      ansiblelint-config-filename:
+        description: "Ansible-lint config filename"
+        required: false
+        default: "configs/ansible-lint.yml"
+        type: string
+      ansiblelint-ignore-filename:
+        description: "Ansible-lint ignore filename"
+        required: false
+        default: "configs/ansible-lint-ignore.txt"
+        type: string
+      molecule-enable:
+        description: "Whether to enable ansible-molecule job"
+        required: false
+        default: false
+        type: boolean
+      molecule-role-name:
+        description: "Name of the role to run mole test against"
+        required: false
+        # no default value
+        type: string
+      molecule-base-scenario:
+        description: "Molecule base scenario file name"
+        required: false
+        default: "extensions/molecule/resources/molecule.yml"
+        type: string
+      status-enable:
+        description: "Whether to enable ansible-status job"
+        required: false
+        default: false
+        type: boolean
+      status-check-role:
+        description: "Check role workflows (role-*.yaml)"
+        required: false
+        default: true
+        type: boolean
+      status-check-module:
+        description: "Check module workflows (module-*.yaml)"
+        required: false
+        default: false
+        type: boolean
+      status-check-plugin:
+        description: "Check plugin workflows (plugin-*.yaml)"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  quality-gate:
+    permissions:
+      contents: read
+      pull-requests: read
+      # checks: write
+    env:
+      PY_COLORS: '1'
+    if: ${{ !inputs.status-enable }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        with:
+          python-version: ${{ inputs.python-version }}
+      - name: Install linters
+        run: |
+          pip3 install yamllint ansible-lint
+      - name: Lint files with yamllint
+        id: yamllint
+        shell: bash
+        env:
+          YAMLLINT_CONFIG_FILE: ${{ inputs.yamllint-config-filename }}
+        run: |
+          yamllint .
+      - name: Lint files with ansible-lint
+        id: ansiblelint
+        shell: bash
+        env:
+          ANSIBLELINT_CONFIG: ${{ inputs.ansiblelint-config-filename }}
+          ANSIBLELINT_IGNORE: ${{ inputs.ansiblelint-ignore-filename }}
+          ANSIBLE_FORCE_COLOR: 'true'
+        run: >
+          ansible-lint
+          --config-file "${ANSIBLELINT_CONFIG}"
+          --ignore-file "${ANSIBLELINT_IGNORE}"
+      - name: Format and print GH step summary
+        if: always()
+        run: |
+          echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
+          echo "| **yamllint** | ${{ steps.yamllint.outcome }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **ansiblelint** | ${{ steps.ansiblelint.outcome }} |" >> $GITHUB_STEP_SUMMARY
+
+  ansible-molecule:
+    permissions:
+      contents: read
+      pull-requests: read
+    if: ${{ inputs.molecule-enable }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
+      - name: Run ansible-molecule tests
+        id: molecule
+        uses: ttybitnik/pipelines/.github/actions/ansible-molecule@master
+        with:
+          python-version: ${{ inputs.python-version }}
+          role-name: ${{ inputs.molecule-role-name }}
+          base-scenario: ${{ inputs.molecule-base-scenario }}
+      - name: Format and print GH step summary
+        if: always()
+        run: |
+          echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
+          echo "| **molecule** | ${{ steps.molecule.outcome }} |" >> $GITHUB_STEP_SUMMARY
+
+  ansible-status:
+    permissions:
+      contents: read
+      pull-requests: read
+      # only required for workflows in private repositories
+      # actions: read
+    if: ${{ inputs.status-enable }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run ansible-status checks
+        id: status
+        uses: ttybitnik/pipelines/.github/actions/ansible-status@master
+        with:
+          check-role: ${{ inputs.status-check-role }}
+          check-module: ${{ inputs.status-check-module }}
+          check-plugin: ${{ inputs.status-check-plugin }}
+      - name: Format and print GH step summary
+        if: always()
+        run: |
+          echo "| Key | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|:--|:--|" >> $GITHUB_STEP_SUMMARY
+          echo "| **collection_status** | ${{ steps.status.outcome }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **checked_workflows** | ${{ steps.status.outputs.checked_workflows }} |" >> $GITHUB_STEP_SUMMARY

@@ -14,6 +14,7 @@ It provides reusable CI/CD pipelines, quality checks, and configuration patterns
 
 | Workflow                                 | Description                                    |
 |------------------------------------------|------------------------------------------------|
+| [ansible-checks][ansible-checks-uri]     | Ansible quality checks.                        |
 | [container-checks][container-checks-uri] | Container quality checks.                      |
 | [go-checks][go-checks-uri]               | Go code quality checks.                        |
 | [go-deploy][go-deploy-uri]               | Go code build and deployment.                  |
@@ -21,6 +22,7 @@ It provides reusable CI/CD pipelines, quality checks, and configuration patterns
 | [semver][semver-uri]                     | Semantic versioning and release automation.    |
 | [yaml-checks][yaml-checks-uri]           | YAML quality checks.                           |
 
+[ansible-checks-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/ansible-checks.yaml
 [container-checks-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/container-checks.yaml
 [go-checks-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/go-checks.yaml
 [go-deploy-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/workflows/go-deploy.yaml
@@ -32,9 +34,13 @@ It provides reusable CI/CD pipelines, quality checks, and configuration patterns
 
 | Action                                                   | Description                              |
 |----------------------------------------------------------|------------------------------------------|
+| [ansible-molecule][ansible-molecule-uri]                 | Base for Molecule collection tests.      |
+| [ansible-status][ansible-status-uri]                     | Status of Molecule collection workflows. |
 | [mkdev-custom][mkdev-custom-uri]                         | Custom linter and update scripts checks. |
 | [release-please-draft-tag][release-please-draft-tag-uri] | Git tag for release-please drafts.       |
 
+[ansible-status-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/ansible-status/action.yaml
+[ansible-molecule-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/ansible-molecule/action.yaml
 [mkdev-custom-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/mkdev-custom/action.yaml
 [release-please-draft-tag-uri]: https://github.com/ttybitnik/pipelines/blob/master/.github/actions/release-please-draft-tag/action.yaml
 

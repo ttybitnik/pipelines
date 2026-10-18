@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.1](https://github.com/ttybitnik/pipelines/compare/v0.5.0...v0.5.1) (2026-10-18)
+
+
+### Dependencies
+
+* **gh:** bump actions/checkout from 7.0.0 to 7.0.1 ([#59](https://github.com/ttybitnik/pipelines/issues/59)) ([cf438ce](https://github.com/ttybitnik/pipelines/commit/cf438ce5e83ddbd80150002d460800470e6fb5dc))
+* **gh:** bump actions/setup-go from 6.5.0 to 7.0.0 ([#57](https://github.com/ttybitnik/pipelines/issues/57)) ([000e697](https://github.com/ttybitnik/pipelines/commit/000e69755fe464a7bc52bfafed59bc322a5f5da6))
+* **gh:** bump github/codeql-action from 4.36.2 to 4.36.3 ([2ba76ef](https://github.com/ttybitnik/pipelines/commit/2ba76ef159d0148a4dcad103206aaade9db880c6))
+* **gh:** bump github/codeql-action/analyze from 4.36.3 to 4.38.0 ([#60](https://github.com/ttybitnik/pipelines/issues/60)) ([b8629f2](https://github.com/ttybitnik/pipelines/commit/b8629f25656a2e4b6ef5db9481d07e38dd9e536f))
+* **gh:** bump github/codeql-action/autobuild from 4.36.3 to 4.38.0 ([#56](https://github.com/ttybitnik/pipelines/issues/56)) ([d9b4c11](https://github.com/ttybitnik/pipelines/commit/d9b4c110119e24124d1c7749d3b456e55f66d731))
+* **gh:** bump hadolint/hadolint-action from 3.3.0 to 3.5.0 ([#58](https://github.com/ttybitnik/pipelines/issues/58)) ([29e2e0d](https://github.com/ttybitnik/pipelines/commit/29e2e0d82addb47a78d3af5c4f705779c543e80a))
+
 ## [0.5.0](https://github.com/ttybitnik/pipelines/compare/v0.4.0...v0.5.0) (2026-09-12)
 
 

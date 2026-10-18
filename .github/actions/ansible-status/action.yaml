@@ -1,3 +1,4 @@
+---
 name: "Status for Ansible collection Molecule workflows"
 description: Check the status of Ansible collection workflows based on their type
 inputs:
@@ -27,7 +28,7 @@ runs:
   steps:
     - name: Check status of workflows
       id: check-status
-      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd  # v8.0.0
       env:
         INPUT_CHECK_ROLE: ${{ inputs.check-role }}
         INPUT_CHECK_MODULE: ${{ inputs.check-module }}

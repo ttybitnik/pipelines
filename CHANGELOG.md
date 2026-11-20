@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.2](https://github.com/ttybitnik/pipelines/compare/v0.5.1...v0.5.2) (2026-11-20)
+
+
+### Dependencies
+
+* **gh:** bump actions/setup-python from 6.2.0 to 7.1.0 ([#64](https://github.com/ttybitnik/pipelines/issues/64)) ([87fe930](https://github.com/ttybitnik/pipelines/commit/87fe930d654f940091415ddf1c989959923e50bb))
+* **gh:** bump github/codeql-action/analyze from 4.38.0 to 4.39.3 ([#63](https://github.com/ttybitnik/pipelines/issues/63)) ([95a1f82](https://github.com/ttybitnik/pipelines/commit/95a1f8277333e3d8fa1654ca4cc4aab09ce8591d))
+* **gh:** bump github/codeql-action/init from 4.36.3 to 4.39.0 ([#62](https://github.com/ttybitnik/pipelines/issues/62)) ([6589716](https://github.com/ttybitnik/pipelines/commit/65897164490890fed4011446884b9cabaadfd5d9))
+* **gh:** bump github/codeql-action/upload-sarif from 4.36.3 to 4.39.3 ([#65](https://github.com/ttybitnik/pipelines/issues/65)) ([ebf66f7](https://github.com/ttybitnik/pipelines/commit/ebf66f76c042005298258289d61fc689ce530c3c))
+* **gh:** bump goreleaser/goreleaser-action from 7.2.3 to 7.3.0 ([#61](https://github.com/ttybitnik/pipelines/issues/61)) ([f044a62](https://github.com/ttybitnik/pipelines/commit/f044a629cdafa7c414c63440ec177987716c34e4))
+
 ## [0.5.1](https://github.com/ttybitnik/pipelines/compare/v0.5.0...v0.5.1) (2026-10-18)
 
 
